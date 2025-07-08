@@ -1,0 +1,39 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"files": {
+		"include": ["*.*"]
+	},
+	"vcs": { "useIgnoreFile": true, "enabled": true, "clientKind": "git" },
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"indentWidth": 4,
+		"lineWidth": 120,
+		"formatWithErrors": true
+	},
+	"linter": {
+		"rules": {
+			"a11y": {
+				"useKeyWithClickEvents": "off",
+				"useAltText": "off",
+				"noSvgWithoutTitle": "off",
+				"noRedundantAlt": "off"
+			},
+			"style": {
+				"noUselessElse": "off",
+				"useImportType": "info",
+				"useExportType": "info",
+				"noNonNullAssertion": "off",
+				"noParameterAssign": "off"
+			},
+			"correctness": { "noUnusedImports": "info" },
+			"suspicious": {
+				"noArrayIndexKey": "off",
+				"noAssignInExpressions": "off",
+				"noExplicitAny": "off"
+			},
+			"complexity": { "noUselessSwitchCase": "info", "noForEach": "off" }
+		}
+	},
+	"overrides": [{ "include": ["tsconfig.*"], "json": { "parser": { "allowComments": true } } }]
+}
