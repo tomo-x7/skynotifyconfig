@@ -28,7 +28,7 @@ const configSchema = z.object({
 	unverified: PreferenceSchema,
 	verified: PreferenceSchema,
 });
-type config = z.infer<typeof configSchema>;
+export type config = z.infer<typeof configSchema>;
 
 export function AllConfig() {
 	const confref = useRef<config>(loadConfig());
@@ -92,20 +92,26 @@ export function AllConfig() {
 					</tr>
 				</tbody>
 			</table>
-			<button type="button" onClick={() => saveConfig(confref.current)}>
+			<button
+				type="button"
+				onClick={() => saveConfig(confref.current)}
+				className="mt-3 ml-2 px-6 py-2 bg-blue-600 text-white rounded-lg shadow font-bold text-base hover:bg-blue-700 transition"
+			>
 				保存する
 			</button>
+			<div>注:"適用する"を押す前に必ず保存してください</div>
 		</>
 	);
 }
 
-function loadConfig(): config {
+export function loadConfig(error = false): config {
 	const raw = localStorage.getItem("config");
 	if (raw != null) {
 		const loaded = configSchema.safeParse(JSON.parse(raw));
 		if (loaded.success) {
 			return loaded.data;
 		} else {
+			if (error) throw new Error("Invalid config");
 			toast.error("設定の読み込みに失敗しました。保存されていた設定を消去します");
 		}
 	}

@@ -13,10 +13,13 @@
 	"dependencies": {
 		"@atproto/api": "^0.15.23",
 		"@atproto/oauth-client-browser": "^0.3.26",
+		"@tailwindcss/vite": "^4.1.11",
 		"react": "^19.1.0",
+		"react-call": "^1.8.1",
 		"react-dom": "^19.1.0",
 		"react-hot-toast": "^2.5.2",
 		"react-responsive": "^10.0.1",
+		"tailwindcss": "^4.1.11",
 		"zod": "^3.25.76"
 	},
 	"devDependencies": {

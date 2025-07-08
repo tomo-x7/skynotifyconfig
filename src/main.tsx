@@ -4,6 +4,7 @@ import { App } from "./App.tsx";
 import { BrowserOAuthClient, AtprotoDohHandleResolver } from "@atproto/oauth-client-browser";
 import { Agent } from "@atproto/api";
 import { Toaster } from "react-hot-toast";
+import "./index.css";
 
 const client = new BrowserOAuthClient({
 	clientMetadata: {
@@ -25,6 +26,6 @@ const login = result?.session != null;
 const agent = new Agent(result?.session ?? new URL("https://public.api.bsky.app"));
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
-		<App login={login} agent={agent} />
+		<App login={login} agent={agent} client={client} />
 	</StrictMode>,
 );
