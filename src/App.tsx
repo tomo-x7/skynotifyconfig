@@ -7,12 +7,12 @@ import type { BrowserOAuthClient, OAuthClient } from "@atproto/oauth-client-brow
 import { createCallable } from "react-call";
 
 export function App({ agent, login, client }: { login: boolean; agent: Agent; client: BrowserOAuthClient }) {
-	agent.app.bsky.notification.putPreferencesV2;
 	const isMobile = useMediaQuery({ maxWidth: 700 });
 	return (
 		<>
 			<h1 className="text-lg font-semibold text-gray-700 mb-4 text-center tracking-tight">Sky Notify Config</h1>
-			{!login ? <Login client={client} /> : <UserConfig agent={agent} />}
+			<Login client={client} />
+			{login && <UserConfig agent={agent} />}
 			<AllConfig />
 			<Toaster position={isMobile ? "bottom-center" : "bottom-left"} />
 		</>
@@ -59,12 +59,20 @@ function UserConfig({ agent }: { agent: Agent }) {
 
 	if (profile == null) return <>loading...</>;
 	return (
-		<div>
-			<div className="mt-4">
-				<img src={profile.avatar} alt="Avatar" className="w-16 h-16 rounded-full mb-2" />
-				<div>{profile.displayName}</div>
+		<div className="flex flex-col items-center mt-4">
+			<div className="flex flex-col items-center mb-4">
+				<img
+					src={profile.avatar}
+					alt="Avatar"
+					className="w-16 h-16 rounded-full mb-2 border border-gray-300 shadow"
+				/>
+				<div className="font-semibold text-gray-800">{profile.displayName}</div>
 			</div>
-			<button type="button" onClick={attach}>
+			<button
+				type="button"
+				onClick={attach}
+				className="px-6 py-2 bg-green-600 text-white rounded-lg shadow font-bold text-base hover:bg-green-700 transition"
+			>
 				設定を適用する
 			</button>
 		</div>
