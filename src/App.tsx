@@ -59,15 +59,13 @@ function UserConfig({ agent }: { agent: Agent }) {
 
 	if (profile == null) return <>loading...</>;
 	return (
-		<div className="flex flex-col items-center mt-4">
-			<div className="flex flex-col items-center mb-4">
-				<img
-					src={profile.avatar}
-					alt="Avatar"
-					className="w-16 h-16 rounded-full mb-2 border border-gray-300 shadow"
-				/>
-				<div className="font-semibold text-gray-800">{profile.displayName}</div>
-			</div>
+		<div className="flex flex-row items-center justify-center gap-6 mt-4 mb-4">
+			<img
+				src={profile.avatar}
+				alt="Avatar"
+				className="w-16 h-16 rounded-full border border-gray-300 shadow"
+			/>
+			<div className="font-semibold text-gray-800 text-lg">{profile.displayName}</div>
 			<button
 				type="button"
 				onClick={attach}
