@@ -1,4 +1,4 @@
-import { useState, use, useEffect } from "react";
+import { useState, use, useEffect, useRef } from "react";
 import { Agent } from "@atproto/api";
 import { AllConfig, loadConfig, type config } from "./Config";
 import toast, { Toaster } from "react-hot-toast";
@@ -8,18 +8,19 @@ import { createCallable } from "react-call";
 
 export function App({ agent, login, client }: { login: boolean; agent: Agent; client: BrowserOAuthClient }) {
 	const isMobile = useMediaQuery({ maxWidth: 700 });
+	const confref = useRef<config>(loadConfig());
 	return (
 		<>
 			<h1 className="text-lg font-semibold text-gray-700 mb-4 text-center tracking-tight">Sky Notify Config</h1>
 			<Login client={client} />
-			{login && <UserConfig agent={agent} />}
-			<AllConfig />
+			{login && <UserConfig agent={agent} conf={confref.current} />}
+			<AllConfig confref={confref} />
 			<Toaster position={isMobile ? "bottom-center" : "bottom-left"} />
 		</>
 	);
 }
 
-function UserConfig({ agent }: { agent: Agent }) {
+function UserConfig({ agent, conf }: { agent: Agent; conf: config }) {
 	const [profile, setProfile] = useState<{
 		displayName: string;
 		avatar?: string;
@@ -41,8 +42,7 @@ function UserConfig({ agent }: { agent: Agent }) {
 			});
 	}, [agent]);
 	const attach = async () => {
-		const config = loadConfig(true);
-		const p = attachInner(config);
+		const p = attachInner(conf);
 		await toast.promise(p, {
 			loading: "設定を適用しています...",
 			success: "設定を適用しました",
@@ -60,11 +60,7 @@ function UserConfig({ agent }: { agent: Agent }) {
 	if (profile == null) return <>loading...</>;
 	return (
 		<div className="flex flex-row items-center justify-center gap-6 mt-4 mb-4">
-			<img
-				src={profile.avatar}
-				alt="Avatar"
-				className="w-16 h-16 rounded-full border border-gray-300 shadow"
-			/>
+			<img src={profile.avatar} alt="Avatar" className="w-16 h-16 rounded-full border border-gray-300 shadow" />
 			<div className="font-semibold text-gray-800 text-lg">{profile.displayName}</div>
 			<button
 				type="button"

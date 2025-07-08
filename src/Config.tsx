@@ -30,8 +30,7 @@ const configSchema = z.object({
 });
 export type config = z.infer<typeof configSchema>;
 
-export function AllConfig() {
-	const confref = useRef<config>(loadConfig());
+export function AllConfig({confref}:{confref: RefObject<config>}) {
 	return (
 		<>
 			<table>
