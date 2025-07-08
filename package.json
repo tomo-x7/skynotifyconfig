@@ -14,7 +14,10 @@
 		"@atproto/api": "^0.15.23",
 		"@atproto/oauth-client-browser": "^0.3.26",
 		"react": "^19.1.0",
-		"react-dom": "^19.1.0"
+		"react-dom": "^19.1.0",
+		"react-hot-toast": "^2.5.2",
+		"react-responsive": "^10.0.1",
+		"zod": "^3.25.76"
 	},
 	"devDependencies": {
 		"@types/react": "^19.1.8",
