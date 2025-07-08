@@ -1,7 +1,7 @@
 table{
 	border: 2px solid rgb(140 140 140);
 	border-collapse: collapse;
-	table-layout: fixed;
+	width: 100%;
 }
 
 th{
@@ -12,9 +12,20 @@ th{
 th,td{
 	border: 1px solid rgb(160 160 160);
 	margin: 0;
+	padding: 0;
 }
-td>input{
+td{
+	height: 30px;
+}
+td>label{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+td>label>input{
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0;
 }

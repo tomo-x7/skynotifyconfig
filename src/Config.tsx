@@ -71,7 +71,9 @@ export function AllConfig() {
 					</tr>
 					<tr>
 						<th>購読ポスト</th>
-						<Config confref={confref} confkey="subscribedPost" /><td /><td />
+						<Config confref={confref} confkey="subscribedPost" />
+						<td />
+						<td />
 					</tr>
 					<tr>
 						<th>RPへのいいね</th>
@@ -83,11 +85,16 @@ export function AllConfig() {
 					</tr>
 					<tr>
 						<th>他すべて</th>
-						<OthersConfig confref={confref} /><td /><td /><td />
+						<OthersConfig confref={confref} />
+						<td />
+						<td />
+						<td />
 					</tr>
 				</tbody>
 			</table>
-			<button type="button" onClick={()=>saveConfig(confref.current)}>保存する</button>
+			<button type="button" onClick={() => saveConfig(confref.current)}>
+				保存する
+			</button>
 		</>
 	);
 }
@@ -143,22 +150,26 @@ function FilterableConfig({
 		<>
 			<Config confref={confref} confkey={confkey} />
 			<td>
-				<input
-					type="radio"
-					name={`${confkey}_include`}
-					value="all"
-					defaultChecked={current?.include === "all"}
-					onChange={onChangeInclude}
-				/>
+				<label>
+					<input
+						type="radio"
+						name={`${confkey}_include`}
+						value="all"
+						defaultChecked={current?.include === "all"}
+						onChange={onChangeInclude}
+					/>
+				</label>
 			</td>
 			<td>
-				<input
-					type="radio"
-					name={`${confkey}_include`}
-					value="follows"
-					defaultChecked={current?.include === "follows"}
-					onChange={onChangeInclude}
-				/>
+				<label>
+					<input
+						type="radio"
+						name={`${confkey}_include`}
+						value="follows"
+						defaultChecked={current?.include === "follows"}
+						onChange={onChangeInclude}
+					/>
+				</label>
 			</td>
 		</>
 	);
@@ -168,18 +179,22 @@ function Config({ confref, confkey }: { confref: RefObject<config>; confkey: key
 	return (
 		<>
 			<td>
-				<input
-					type="checkbox"
-					onChange={(ev) => (current.push = ev.currentTarget.checked)}
-					defaultChecked={current.push}
-				/>
+				<label>
+					<input
+						type="checkbox"
+						onChange={(ev) => (current.push = ev.currentTarget.checked)}
+						defaultChecked={current.push}
+					/>
+				</label>
 			</td>
 			<td>
-				<input
-					type="checkbox"
-					onChange={(ev) => (current.list = ev.currentTarget.checked)}
-					defaultChecked={current.list}
-				/>
+				<label>
+					<input
+						type="checkbox"
+						onChange={(ev) => (current.list = ev.currentTarget.checked)}
+						defaultChecked={current.list}
+					/>
+				</label>
 			</td>
 		</>
 	);
@@ -194,7 +209,9 @@ function OthersConfig({ confref }: { confref: RefObject<config> }) {
 	};
 	return (
 		<td>
-			<input type="checkbox" onChange={onChange} defaultChecked={current.starterpackJoined.push} />
+			<label>
+				<input type="checkbox" onChange={onChange} defaultChecked={current.starterpackJoined.push} />
+			</label>
 		</td>
 	);
 }
