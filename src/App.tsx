@@ -12,14 +12,7 @@ export function App({ agent, login, client }: { login: boolean; agent: Agent; cl
 	return (
 		<>
 			<h1 className="text-lg font-semibold text-gray-700 mb-4 text-center tracking-tight">Sky Notify Config</h1>
-			{!login ? (
-				<Login client={client} />
-			) : (
-				<div>
-					<p>ログイン済み</p>
-					<p>設定を変更してください。</p>
-				</div>
-			)}
+			{!login ? <Login client={client} /> : <UserConfig agent={agent} />}
 			<AllConfig />
 			<Toaster position={isMobile ? "bottom-center" : "bottom-left"} />
 		</>
