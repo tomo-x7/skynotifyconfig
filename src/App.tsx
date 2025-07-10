@@ -91,7 +91,7 @@ function Login({ client }: { client: BrowserOAuthClient }) {
 			<button
 				type="button"
 				onClick={() => login("https://bsky.social")}
-				className="px-4 py-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600 transition text-sm"
+				className="px-4 py-2 bg-blue-600 text-white rounded shadow hover:bg-blue-600 transition text-sm"
 			>
 				bsky.socialでログイン
 			</button>
